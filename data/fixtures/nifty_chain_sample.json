@@ -1,0 +1,14 @@
+{
+  "name": "nifty_chain_sample",
+  "description": "Deterministic offline market: params generate a Black-Scholes-consistent NIFTY chain with a mild skew, plus a seeded 120-day close series. Expiries are stored as day offsets so the fixture never goes stale.",
+  "vix": 13.4,
+  "generator": {
+    "spot": 25150.0,
+    "atm_iv": 0.132,
+    "realized_vol": 0.104,
+    "strike_step": 50,
+    "strikes_each_side": 20,
+    "expiry_offsets": [7, 14, 30],
+    "seed": 11
+  }
+}

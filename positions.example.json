@@ -1,0 +1,7 @@
+{
+  "_comment": "Example book context. Expiry is given as days-from-today so the file never goes stale. Negative qty = short.",
+  "positions": [
+    { "option_type": "CE", "strike": 25600, "qty": -1, "expiry_offset_days": 7, "iv": 0.135 },
+    { "option_type": "PE", "strike": 24700, "qty": -1, "expiry_offset_days": 7, "iv": 0.145 }
+  ]
+}

@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+data/out*/
+data/*log*.jsonl
+data/fixtures/nse_*.json
+.env
+.DS_Store
