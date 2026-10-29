@@ -1,0 +1,160 @@
+{
+  "built_at": "2026-10-29T20:53:22.186327",
+  "source": "backtest:synthetic:gbm",
+  "history_is_real": false,
+  "min_trades": 20,
+  "shrink": 0.3,
+  "cap": 0.5,
+  "cells": {
+    "trend_up|call_credit_spread": {
+      "regime": "trend_up",
+      "family": "call_credit_spread",
+      "trades": 50,
+      "mean_pnl": 376.61,
+      "win_rate": 0.82,
+      "credit_kept": 0.2364,
+      "adjustment": 0.0709,
+      "sufficient": true
+    },
+    "trend_up|iron_condor": {
+      "regime": "trend_up",
+      "family": "iron_condor",
+      "trades": 50,
+      "mean_pnl": -81.89,
+      "win_rate": 0.72,
+      "credit_kept": -0.0412,
+      "adjustment": -0.0124,
+      "sufficient": true
+    },
+    "trend_up|put_credit_spread": {
+      "regime": "trend_up",
+      "family": "put_credit_spread",
+      "trades": 50,
+      "mean_pnl": -54.21,
+      "win_rate": 0.76,
+      "credit_kept": -0.0341,
+      "adjustment": -0.0102,
+      "sufficient": true
+    },
+    "range_high_vol|iron_condor": {
+      "regime": "range_high_vol",
+      "family": "iron_condor",
+      "trades": 47,
+      "mean_pnl": -438.08,
+      "win_rate": 0.6596,
+      "credit_kept": -0.2274,
+      "adjustment": -0.0682,
+      "sufficient": true
+    },
+    "range_high_vol|iron_fly": {
+      "regime": "range_high_vol",
+      "family": "iron_fly",
+      "trades": 47,
+      "mean_pnl": -148.87,
+      "win_rate": 0.1915,
+      "credit_kept": -0.0222,
+      "adjustment": -0.0066,
+      "sufficient": true
+    },
+    "range_high_vol|put_credit_spread": {
+      "regime": "range_high_vol",
+      "family": "put_credit_spread",
+      "trades": 47,
+      "mean_pnl": 14.41,
+      "win_rate": 0.766,
+      "credit_kept": 0.0092,
+      "adjustment": 0.0028,
+      "sufficient": true
+    },
+    "range_high_vol|short_straddle": {
+      "regime": "range_high_vol",
+      "family": "short_straddle",
+      "trades": 47,
+      "mean_pnl": -3939.08,
+      "win_rate": 0.5106,
+      "credit_kept": -0.1677,
+      "adjustment": -0.0503,
+      "sufficient": true
+    },
+    "range_high_vol|short_strangle": {
+      "regime": "range_high_vol",
+      "family": "short_strangle",
+      "trades": 47,
+      "mean_pnl": -2873.3,
+      "win_rate": 0.7021,
+      "credit_kept": -0.59,
+      "adjustment": -0.15,
+      "sufficient": true
+    },
+    "trend_down|call_credit_spread": {
+      "regime": "trend_down",
+      "family": "call_credit_spread",
+      "trades": 22,
+      "mean_pnl": -111.24,
+      "win_rate": 0.7727,
+      "credit_kept": -0.0689,
+      "adjustment": -0.0207,
+      "sufficient": true
+    },
+    "trend_down|iron_condor": {
+      "regime": "trend_down",
+      "family": "iron_condor",
+      "trades": 22,
+      "mean_pnl": -723.2,
+      "win_rate": 0.5909,
+      "credit_kept": -0.3691,
+      "adjustment": -0.1107,
+      "sufficient": true
+    },
+    "trend_down|put_credit_spread": {
+      "regime": "trend_down",
+      "family": "put_credit_spread",
+      "trades": 22,
+      "mean_pnl": 258.34,
+      "win_rate": 0.8182,
+      "credit_kept": 0.1593,
+      "adjustment": 0.0478,
+      "sufficient": true
+    },
+    "vol_shock|call_credit_spread": {
+      "regime": "vol_shock",
+      "family": "call_credit_spread",
+      "trades": 1,
+      "mean_pnl": 1689.0,
+      "win_rate": 1.0,
+      "credit_kept": 1.0,
+      "adjustment": 0.0,
+      "sufficient": false
+    },
+    "vol_shock|iron_condor": {
+      "regime": "vol_shock",
+      "family": "iron_condor",
+      "trades": 1,
+      "mean_pnl": 1896.75,
+      "win_rate": 1.0,
+      "credit_kept": 0.8917,
+      "adjustment": 0.0,
+      "sufficient": false
+    },
+    "vol_shock|iron_fly": {
+      "regime": "vol_shock",
+      "family": "iron_fly",
+      "trades": 1,
+      "mean_pnl": -463.5,
+      "win_rate": 0.0,
+      "credit_kept": -0.0659,
+      "adjustment": 0.0,
+      "sufficient": false
+    },
+    "vol_shock|put_credit_spread": {
+      "regime": "vol_shock",
+      "family": "put_credit_spread",
+      "trades": 1,
+      "mean_pnl": -5866.5,
+      "win_rate": 0.0,
+      "credit_kept": -3.5914,
+      "adjustment": 0.0,
+      "sufficient": false
+    }
+  }
+}

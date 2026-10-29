@@ -4,6 +4,8 @@ __pycache__/
 .pytest_cache/
 data/out*/
 data/*log*.jsonl
+data/ledger.jsonl
+data/evidence/
 data/fixtures/nse_*.json
 .env
 .DS_Store

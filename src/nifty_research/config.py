@@ -72,6 +72,17 @@ class RunConfig:
             Path(os.environ["NR_POSITIONS"]) if os.environ.get("NR_POSITIONS") else None
         )
     )
+    evidence_path: Path | None = field(
+        default_factory=lambda: (
+            Path(os.environ["NR_EVIDENCE"]) if os.environ.get("NR_EVIDENCE") else None
+        )
+    )
+    ledger_path: Path = field(
+        default_factory=lambda: Path(os.environ.get("NR_LEDGER", "data/ledger.jsonl"))
+    )
+    backtest_history: str = field(
+        default_factory=lambda: os.environ.get("NR_HISTORY", "auto")
+    )
 
     # --- optional LLM hypothesis generator (never required) ---
     llm_enabled: bool = field(default_factory=lambda: _env_bool("NR_LLM_ENABLED", False))

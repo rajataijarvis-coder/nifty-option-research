@@ -177,6 +177,8 @@ class ScoredCandidate(BaseModel):
     margin_proxy: float
     undefined_risk: bool = False
     dte: int = 0
+    evidence_adjustment: float = 0.0  # score multiplier from measured outcomes (0 = none)
+    evidence_trades: int = 0  # sample size behind that adjustment
     rom: float
     liquidity: float
     iv_edge: float

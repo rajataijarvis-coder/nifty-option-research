@@ -16,6 +16,10 @@ dependencies = [
 dev = [
     "pytest>=8.3",
 ]
+ui = [
+    "streamlit>=1.40",
+    "pandas>=2.2",
+]
 
 [project.scripts]
 nifty-research = "nifty_research.graph.cli:main"

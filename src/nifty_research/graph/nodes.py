@@ -17,6 +17,7 @@ from datetime import date, datetime, timezone
 
 from ..analytics import book as book_mod
 from ..analytics import guards, regime as regime_mod, scoring, strategies
+from ..backtest import evidence as evidence_mod
 from ..config import RunConfig
 from ..providers import get_market_state
 from ..research import hypotheses as hypo_mod, memory as memory_mod, report
@@ -130,11 +131,30 @@ def generate_candidates(state: ResearchState) -> dict:
 
 
 def score_candidates(state: ResearchState) -> dict:
+    """Score every candidate, then let measured evidence (if any) adjust the ranking.
+
+    The adjustment is sample-gated, shrunk and capped inside ``backtest.evidence``; when no
+    evidence file is configured the model score stands alone and the note says so.
+    """
     config: RunConfig = state["config"]
     snapshot = state["market"].snapshot
     regime = state["regime"]
     scored = [scoring.score_candidate(c, snapshot, regime, config) for c in state.get("candidates", [])]
-    return {"scored": scoring.rank(scored)}
+
+    warnings: list[str] = []
+    evidence = evidence_mod.load_optional(getattr(config, "evidence_path", None))
+    if evidence is not None:
+        scored = evidence_mod.apply_to_all(scored, regime, evidence)
+        applied = [s for s in scored if s.evidence_adjustment]
+        if applied:
+            warnings.append(
+                "evidence adjustment applied: "
+                + "; ".join(
+                    f"{s.candidate.family} {s.evidence_adjustment:+.1%} ({s.evidence_trades} trades)"
+                    for s in applied[:6]
+                )
+            )
+    return {"scored": scoring.rank(scored), "warnings": warnings}
 
 
 def validate(state: ResearchState) -> dict:
@@ -273,6 +293,7 @@ def finalize(state: ResearchState) -> dict:
             ),
             "relaxations_applied": state.get("relax_level", 0),
             "iterations": len(state.get("findings", [])),
+            "evidence": _evidence_note(config),
         },
         book_context=state.get("book_context"),
         accepted=accepted,
@@ -321,6 +342,18 @@ def _merge_unique(existing: list, new: list) -> list:
             out.append(s)
             seen.add(s.candidate.name)
     return out
+
+
+def _evidence_note(config: RunConfig) -> str:
+    """One-line provenance for the measured evidence that adjusted the scores."""
+    evidence = evidence_mod.load_optional(getattr(config, "evidence_path", None))
+    if evidence is None:
+        return "none — scores are the model's own view only (no backtest evidence configured)"
+    return (
+        f"{evidence.source} ({'real' if evidence.history_is_real else 'SYNTHETIC'} history), "
+        f"shrink {evidence.shrink:g}, cap ±{evidence.cap * evidence.shrink:.0%}, "
+        f"min trades {evidence.min_trades}, built {evidence.built_at:%Y-%m-%d %H:%M}"
+    )
 
 
 def as_date(value) -> date:  # pragma: no cover - convenience for callers/tests

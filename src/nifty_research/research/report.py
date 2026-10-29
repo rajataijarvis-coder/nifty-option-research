@@ -96,6 +96,11 @@ def render_markdown(note: ResearchNote) -> str:
                 f"- {'⚠️ undefined risk (naked short optionality)' if s.undefined_risk else 'defined risk'}"
                 f" · liquidity {s.liquidity:.2f}"
             )
+            if s.evidence_adjustment:
+                out.append(
+                    f"- measured-evidence adjustment {s.evidence_adjustment:+.1%} "
+                    f"from {s.evidence_trades} settled trades in this regime"
+                )
             out.append("")
     else:
         out.append("## Recommended structures")
